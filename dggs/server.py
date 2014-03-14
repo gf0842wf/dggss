@@ -99,7 +99,8 @@ class TCPProtocol(object):
     
     def handle_DEVUP(self, data):
         """通用消息上行(客户端发给服务器),
-        - 如果含有媒体文件,要先发一个媒体准备消息,
+        - 如果含有媒体文件,要先发一个媒体准备消息
+        - 媒体数据先上传,再上传本消息
         """
         message = data["message"]
         sub_type = data["sub_type"] # 0 - 文字, 1 - 文字 + 媒体文件
