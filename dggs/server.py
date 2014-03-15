@@ -150,6 +150,7 @@ def tcp_rloop(sock, addr):
     protocol = TCPProtocol(sock, addr)
     timeout = TimeoutMixin(settings.MAIN_TIMEOUT)
     timeout.start_timeout()
+    
     def loop():
         _buf = ""
         while True:
@@ -171,8 +172,8 @@ def tcp_rloop(sock, addr):
                 log.warning("%r disconnect timeout", addr)
                 sock.close()
                 break
-#             except Exception as e:
-#                 log.error("%r disconnect error:%s", *(addr, repr(e)))
-#                 sock.close()
-#                 break
+            except Exception as e:
+                log.error("%r disconnect error:%s", *(addr, repr(e)))
+                sock.close()
+                break
     loop()
