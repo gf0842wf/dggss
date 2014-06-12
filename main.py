@@ -27,7 +27,7 @@ if __name__ == "__main__":
         import signal
         gevent.signal(signal.SIGQUIT, gevent.killall)
         log.error("sigquit, kill all")
-    server = StreamServer(("0.0.0.0", port), tcp_rloop, spawn=5000)
+    server = StreamServer(("0.0.0.0", port), tcp_rloop, spawn=1000)
     log.debug("start server port:%d", port)
     server.serve_forever()
 
